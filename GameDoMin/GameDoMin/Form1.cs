@@ -151,7 +151,7 @@ namespace GameDoMin
             }
             else
             {
-                btnmin[i, j].Text = "b";
+                btnmin[i, j].Image = Image.FromFile("./Image/mine.ico");
                 btnmin[i, j].BackColor = Color.Red;
                 control = -1;
             }
@@ -206,8 +206,10 @@ namespace GameDoMin
         private void btnplay_MouseClick(object sender, MouseEventArgs e)
         {
             paldomin.Controls.Clear();
+            
             LoadData();
             control = 0;
+            so_o_mo = 0;
         }
 
     }
