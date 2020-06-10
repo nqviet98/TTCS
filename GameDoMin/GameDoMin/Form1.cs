@@ -34,6 +34,7 @@ namespace GameDoMin
         private void LoadData()
         {
 
+            lbsomin.Text = somin.ToString();
             int i = 0, j = 0;
             int width = 30;
             for (i = 0; i < 10; i++)
@@ -67,7 +68,6 @@ namespace GameDoMin
 
         private void bammin(object sender, EventArgs e)
         {
-            
             if (control == 0)
             {
                 int width = 30;
@@ -152,6 +152,7 @@ namespace GameDoMin
             else
             {
                 btnmin[i, j].Image = Image.FromFile("./Image/mine.ico");
+                btnplay.Image = Image.FromFile("./Image/smiley3.ico");
                 btnmin[i, j].BackColor = Color.Red;
                 control = -1;
             }
@@ -210,6 +211,10 @@ namespace GameDoMin
             LoadData();
             control = 0;
             so_o_mo = 0;
+            somin = 20;
+            lbsoo.Text = "00";
+            lbsomin.Text = somin.ToString();
+            btnplay.Image = Image.FromFile("./Image/smiley1.ico");
         }
 
     }
