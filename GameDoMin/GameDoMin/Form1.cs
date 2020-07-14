@@ -265,6 +265,5 @@ namespace GameDoMin
             lbsomin.Text = somin.ToString();
             btnplay.Image = Image.FromFile("./Image/smiley1.ico");
         }
-
     }
 }
