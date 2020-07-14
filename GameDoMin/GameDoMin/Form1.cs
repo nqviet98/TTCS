@@ -15,7 +15,7 @@ namespace GameDoMin
     public partial class Form1 : Form
     {
         Button[,] btnmin = new Button[10,10];
-        
+        int[,] b = new int[10, 10];
         int[,] a = new int[10, 10];
         int somin = 20;
         int so_o_mo = 0;
@@ -77,17 +77,45 @@ namespace GameDoMin
                 int i = 0, j = 0;
                 i = x / width;
                 j = y / width;
-                mo_o(i, j);
-                
+                mo_o(i, j); 
             }
             if(control == 1)
             {
+                for(int i = 0; i < 10; i++)
+                {
+                    for(int j = 0; j < 10; j++)
+                    {
+                        if(a[i, j] == 1)
+                        {
+                            btnmin[i, j].Image = Image.FromFile("./Image/ mine2.ico");
+                        }
+                    }
+                }
                 MessageBox.Show("You Win", "", MessageBoxButtons.OK);
-               
             }
             else
                 if(control == -1)
             {
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (a[i, j] == 0)
+                        {
+                            mo_o(i, j);
+                        }
+                    }
+                }
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (a[i, j] == 1)
+                        {
+                            btnmin[i, j].Image = Image.FromFile("./Image/mine2.ico");
+                        }
+                    }
+                }
                 MessageBox.Show("You Lose", "", MessageBoxButtons.OK);
             }
         }
@@ -102,11 +130,11 @@ namespace GameDoMin
                     {
                         btnmin[i, j].Text = " ";
                         btnmin[i, j].BackColor = Color.LightGreen;
-                        
                         mo_o_lan_can(i, j);
                     }
                     else
                     {
+                        btnmin[i, j].Text = " ";
                         switch (sominxungquanh(i,j))
                         {
                             case 1:
@@ -148,6 +176,8 @@ namespace GameDoMin
                         
                     lbsoo.Text = so_o_mo.ToString();
                 }
+                if (so_o_mo == 80)
+                    control = 1;
             }
             else
             {
@@ -173,15 +203,34 @@ namespace GameDoMin
                     }
                     if (btnmin[u,v].Text == "" && a[u,v] == 0)
                     {
-                        so_o_mo++;
                         mo_o(u, v);
                     }
                 }
             }
         }
-        private void danhdau(object sender, MouseEventArgs e)
+        private void danhdau(object sender, MouseEventArgs e, int i, int j)
         {
-
+            if(e.Button == MouseButtons.Right)
+            {
+                if(b[i, j] >= 0 && b[i, j] <2)
+                {
+                    b[i, j]++;
+                }
+                else
+                    if(b[i, j] == 2)
+                {
+                    b[i, j] = 0;
+                }
+                switch(b[i, j])
+                {
+                    case 1:
+                        btnmin[i, j].Image = Image.FromFile("./Image/flag.ico");
+                        break;
+                    case 2:
+                        btnmin[i, j].Image = Image.FromFile("./Image/tile2.ico");
+                        break;
+                }
+            }    
         }
         private int sominxungquanh(int i, int j)
         {
